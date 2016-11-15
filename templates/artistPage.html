@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Artist Page{% endblock %}
+
+ {% block page_content %}
+ <div class="page-header">
+    <h1>{{ name }}</h1>
+ </div>
+    <div class="container">
+        <p>{{ genre[0]|title }}</p>
+    </div>
+     <div class="container">
+        <p>{{ desc }}</p>
+     </div>
+
+{% endblock %}
