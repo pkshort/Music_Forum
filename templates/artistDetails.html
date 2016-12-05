@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {{ name }}!</h1>
+
+    <h3> Artist name -</h3>
+
+    {{ allArtists.name }}
+    <br>
+ <h3> Artist description -</h3>
+    {{ allArtists.info }}
+    <br>
+ <h3> Genre name -</h3>
+    {{ desc.name }}
+
+</div>
+
+{% endblock %}

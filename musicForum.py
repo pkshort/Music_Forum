@@ -56,6 +56,8 @@ class Posts(db.Model):
     timeStamp = db.Column(db.DateTime)
     boardId = db.relationship('board.id', backref='board', lazy='dynamic')
     votes = db.Column(db.Integer)
+    votesTotal = db.Column(db.Integer)
+
 
     def __repr__(self):
         return self.title
@@ -83,87 +85,14 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template('500.html'), 500
 
-
-#class NameForm(Form):
-#    genres = Genre.query.filter()
-#    genreList = []
-#    count = 1
-#    for i in genres:
-#        genreList.append((count, i))
-#        count += 1
-#    artistName = StringField('Artist name')
-#    artistGenre = SelectField(label='Genres', choices=genreList, validators=None)
-#    artistDesc = StringField('Description')
-#    submit = SubmitField('Submit')
+@app.route('/boards')
+def boardsList():
+    return render_template('boardsList.html')
 
 
-#class GenreForm(Form):
-#    genre = StringField('Genre name', validators=[Required()])
-#    submit = SubmitField('Submit')
-
-#@app.route('/newartist', methods=['GET', 'POST'])
-#def new_artist():
-#    form = NameForm()
-#    if form.is_submitted():
-#        artist = form.artistName.data
-#        unicodedata.normalize('NFKD', artist)
-#        check = Artist.query.filter_by(artistName=artist).first()
-#        if check is None:
-#            newArtist = Artist()
-#            newArtist.artistName = form.artistName.data
-#            newArtist.desc = form.artistDesc.data
-#            temp_id = Genre.query.filter_by(id=form.artistGenre.data).first()
-#            newArtist.genre_id = temp_id.id
-#            db.session.add(newArtist)
-#            flash('New band submitted')
-#            db.session.commit()
-#            return render_template('newartist.html', form=form, artistName=newArtist)
-#        else:
-#            flash('Band already in system..')
-#            return render_template(url_for('newartist.html', form=form))
-#    return render_template('newartist.html', form=form)
-
-
-#def addItem(artist, desc):
-#    my_dict = session['bands']
-#    my_dict[artist] = desc
-#    session['bands'] = my_dict
-
-
-#@app.route('/artistPage/<artistName>', methods=['GET'])
-#def artist_page(artistName):
-#    artist = Artist.query.filter_by(artistName=artistName).first()
-#    genres = Genre.query.filter_by(id=artist.genre_id)
-#    temp = Artist.query.filter_by(desc=artist.desc).first()
-#    description = temp.desc
-#    return render_template('artistPage.html', name=artist, genre=genres, desc=description)
-
-
-#@app.route('/newgenre', methods=['GET', 'POST'])
-#def new_genre():
-#    form = GenreForm()
-#    if form.validate_on_submit():
-#        temp_genre = form.genre.data
-#        unicodedata.normalize('NFKD', temp_genre)
-#        check = Genre.query.filter_by(genreName=temp_genre).first()
-#        if check is None:
-#            newGenre = Genre()
-#            newGenre.genreName = temp_genre
-#            flash('New Genre Submitted')
-#            db.session.add(newGenre)
-#            db.session.commit()
-#            return render_template('newGenre.html', form=form)
-#        flash('Genre already in database..')
-#        return render_template('newGenre.html', form=form)
-#
-#    return render_template('newGenre.html', form=form)
-
-
-
-#@app.route('/artistlist', methods=['GET'])
-#def artistlist():
-#    myArtists = Artist.query.all()
-#    return render_template('artistList.html', artists=myArtists)
+@app.route('/profile/<user>')
+def profile_page(user):
+    return render_template('index.html')
 
 
 if __name__ == '__main__':

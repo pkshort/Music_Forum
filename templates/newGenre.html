@@ -1,19 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %}New Genre{% endblock %}
+
+{% block title %}Flasky{% endblock %}
 
 {% block page_content %}
-     {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {{ message }}
-    </div>
-    {% endfor %}
 <div class="page-header">
-    <h1>New Genre</h1>
+    <h1>Hello enter new genre!</h1>
 </div>
-    <form action="" method='POST'>
-    {{ form.hidden_tag() }}
-    {{ wtf.quick_form(form) }}
-    </form>
+{{ wtf.quick_form(form) }}
 {% endblock %}
